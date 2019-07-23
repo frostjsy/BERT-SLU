@@ -1,1 +1,1 @@
-This foler contains BERT pre-trained languge models.
+This folder contains BERT pre-trained languge models.
