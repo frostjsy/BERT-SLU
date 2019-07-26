@@ -4,13 +4,11 @@ import csv
 import tensorflow as tf
 
 """### Input Example"""
-
 class InputExample(object):
     """A single training/test example for simple sequence classification."""
 
     def __init__(self, guid, text_a, text_b=None, label=None):
         """Constructs a InputExample.
-
         Args:
           guid: Unique id for the example.
           text_a: string. The untokenized text of the first sequence. For single
@@ -37,7 +35,6 @@ class PaddingInputExample(object):
 
 class InputFeatures(object):
     """A single set of features of data."""
-
     def __init__(self,
                  input_ids,
                  input_mask,
@@ -50,12 +47,11 @@ class InputFeatures(object):
         self.label_id = label_id
         self.is_real_example = is_real_example
 
-"""### Data Processor"""
-
+""" Data Processor"""
 class DataProcessor(object):
     """Processor for the ATIS data set."""
-
     def __init__(self, data_dir):
+        self.log_dir = log_dir
         self.data_dir = data_dir
         self.train_path = os.path.join(self.data_dir, "train.tsv")
         self.dev_path = os.path.join(self.data_dir, "dev.tsv")
@@ -94,7 +90,7 @@ class DataProcessor(object):
     def get_labels_info(self):
         labels = []
         label_map = {}
-        label_map_file = os.path.join(log_dir, "label_map.txt")
+        label_map_file = os.path.join(self.log_dir, "label_map.txt")
         lines = self._read_tsv(self.train_path) + \
                 self._read_tsv(self.dev_path) + \
                 self._read_tsv(self.test_path)
@@ -111,8 +107,7 @@ class DataProcessor(object):
                 writer.write("{}:{}\n".format(i, label))
         return label_map, num_labels
 
-def convert_single_example(ex_index, example, label_map, max_seq_length,
-                           tokenizer):
+def convert_single_example(ex_index, example, label_map, max_seq_length, tokenizer):
     """Converts a single `InputExample` into a single `InputFeatures`."""
 
     if isinstance(example, PaddingInputExample):
