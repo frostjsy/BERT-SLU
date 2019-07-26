@@ -1,3 +1,6 @@
+import os
+import tensorflow as tf
+
 """### Input Example"""
 
 class InputExample(object):
