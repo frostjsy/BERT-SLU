@@ -1,7 +1,8 @@
 import os
-import collections
 import csv
+import collections
 import tensorflow as tf
+from bert import tokenization
 
 """### Input Example"""
 class InputExample(object):
