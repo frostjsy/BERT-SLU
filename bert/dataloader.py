@@ -50,7 +50,7 @@ class InputFeatures(object):
 """ Data Processor"""
 class DataProcessor(object):
     """Processor for the ATIS data set."""
-    def __init__(self, data_dir):
+    def __init__(self, log_dir, data_dir):
         self.log_dir = log_dir
         self.data_dir = data_dir
         self.train_path = os.path.join(self.data_dir, "train.tsv")
